@@ -45,19 +45,19 @@ bool c_rb_delete( c_node **root, int key )
 	{
 		child	= pos->right;
 		parent	= pos->parent;
-		c_rb_transplant( root, pos, child );
+		c_rb_swap( root, pos, child );
 		goto fixup;
 	}
 	if ( !pos->right )
 	{
 		child	= pos->left;
 		parent	= pos->parent;
-		c_rb_transplant( root, pos, child );
+		c_rb_swap( root, pos, child );
 		goto fixup;
 	}
 	if ( pos->left && pos->right )
 	{
-		c_node *hook = c_rb_left_minimum( pos->right );
+		c_node *hook = c_rb_left_min( pos->right );
 		bf			= hook->bf;
 		child			= hook->right;
 		parent			= hook->parent;
@@ -68,11 +68,11 @@ bool c_rb_delete( c_node **root, int key )
 		{
 			parent = hook;
 		}else{
-			c_rb_transplant( root, hook, child );
+			c_rb_swap( root, hook, child );
 			hook->right		= pos->right;
 			hook->right->parent	= hook;
 		}
-		c_rb_transplant( root, pos, hook );
+		c_rb_swap( root, pos, hook );
 		goto fixup;
 	}
 fixup:
@@ -222,7 +222,7 @@ void c_rb_delete_fixup( c_node **root, c_node *pos, c_node *parent )
 }
 
 
-c_node *c_rb_left_minimum( c_node *pos )
+c_node *c_rb_left_min( c_node *pos )
 {
 	while ( pos->left )
 		pos = pos->left;
@@ -230,7 +230,7 @@ c_node *c_rb_left_minimum( c_node *pos )
 }
 
 
-c_node *c_rb_right_minimum( c_node *pos )
+c_node *c_rb_right_min( c_node *pos )
 {
 	while ( pos->right )
 		pos = pos->right;
@@ -244,7 +244,7 @@ void c_rb_left_rotate( c_node **root, c_node *pos )
 	pos->right = hook->left;
 	if ( pos->right )
 		pos->right->parent = pos;
-	c_rb_transplant( root, pos, hook );
+	c_rb_swap( root, pos, hook );
 	hook->left		= pos;
 	hook->left->parent	= hook;
 }
@@ -256,13 +256,13 @@ void c_rb_right_rotate( c_node **root, c_node *pos )
 	pos->left = hook->right;
 	if ( pos->left )
 		pos->left->parent = pos;
-	c_rb_transplant( root, pos, hook );
+	c_rb_swap( root, pos, hook );
 	hook->right		= pos;
 	hook->right->parent	= hook;
 }
 
 
-void c_rb_transplant( c_node **root, c_node *src, c_node *dst )
+void c_rb_swap( c_node **root, c_node *src, c_node *dst )
 {
 	if ( src->parent )
 	{

@@ -11,9 +11,7 @@ void c_array_bubble( int *arr, int len )
 		{
 			status = true;
 			if ( arr[jdx] > arr[jdx + 1] )
-			{
 				c_array_swap( arr, jdx, jdx + 1 );
-			}
 		}
 	}
 }
@@ -23,17 +21,17 @@ void c_array_quick( int *arr, int left, int right )
 {
 	if ( left >= right )
 		return;
-	int idx = left, jdx = right, pivot = arr[left];
+	int idx = left, jdx = right, tmp = arr[left];
 	while ( idx < jdx )
 	{
-		while ( idx < jdx && arr[jdx] >= pivot )
+		while ( idx < jdx && arr[jdx] >= tmp )
 			jdx--;
 		arr[idx] = arr[jdx];
-		while ( idx < jdx && arr[idx] <= pivot )
+		while ( idx < jdx && arr[idx] <= tmp )
 			idx++;
 		arr[jdx] = arr[idx];
 	}
-	arr[idx] = pivot;
+	arr[idx] = tmp;
 	c_array_quick( arr, left, idx - 1 );
 	c_array_quick( arr, idx + 1, right );
 }

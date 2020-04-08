@@ -36,6 +36,15 @@ typedef struct c_astar
 	int	link;
 } c_astar;
 
+void c_array_swap( int *arr, int src, int dst );
+
+
+int c_array_limit( int *arr, int len, int fmt );
+
+
+void c_array_fixup( int *arr, int len, int pos, int fmt );
+
+
 int c_graph_distance( c_vertex *vertex, int begin, int pos, int end );
 
 

@@ -3,7 +3,7 @@
 
 void c_array_count( int *arr, int len )
 {
-	int	max	= c_array_max( arr, len );
+	int	max	= c_array_limit( arr, len, 1 );
 	int	*tmp	= (int *) malloc( (max + 1) * sizeof(int) );
 	for ( int idx = 0; idx < len; idx++ )
 	{

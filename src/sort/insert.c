@@ -5,13 +5,13 @@ void c_array_insert( int *arr, int len, int gap )
 {
 	for ( int idx = gap; idx < len; idx++ )
 	{
-		int jdx = idx - gap, pivot = arr[idx];
-		while ( jdx >= 0 && arr[jdx] > pivot )
+		int jdx = idx - gap, tmp = arr[idx];
+		while ( jdx >= 0 && arr[jdx] > tmp )
 		{
 			arr[jdx + gap]	= arr[jdx];
 			jdx		-= gap;
 		}
-		arr[jdx + gap] = pivot;
+		arr[jdx + gap] = tmp;
 	}
 }
 

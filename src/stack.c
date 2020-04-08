@@ -30,7 +30,7 @@ c_data c_stack_pop( c_stack *stack, int fmt )
 	if ( !stack->length )
 		return(NULL);
 	for ( int idx = stack->length / 2 - 1; idx >= 0; idx-- )
-		c_stack_heap( stack, idx, fmt );
+		c_stack_fixup( stack, idx, fmt );
 	c_data data = stack->queue[0].data;
 	stack->queue[0] = stack->queue[--stack->length];
 	return(data);
@@ -45,7 +45,7 @@ bool c_stack_close( c_stack *stack )
 }
 
 
-void c_stack_heap( c_stack *stack, int pos, int fmt )
+void c_stack_fixup( c_stack *stack, int pos, int fmt )
 {
 	c_stack_node tmp = stack->queue[pos];
 	for ( int idx = pos * 2 + 1; idx < stack->length; idx = pos * 2 + 1 )

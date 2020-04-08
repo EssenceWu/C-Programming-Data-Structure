@@ -28,4 +28,4 @@ c_data c_stack_pop( c_stack *stack, int fmt );
 bool c_stack_close( c_stack *stack );
 
 
-void c_stack_heap( c_stack *stack, int pos, int fmt );
+void c_stack_fixup( c_stack *stack, int pos, int fmt );
