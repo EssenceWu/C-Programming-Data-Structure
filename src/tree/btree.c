@@ -47,6 +47,7 @@ void c_btree_level( c_node *pos )
 		if ( pos->right )
 			c_stack_push( stack, 0, pos->right );
 	}
+	c_stack_close( stack );
 }
 
 

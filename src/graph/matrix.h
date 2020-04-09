@@ -1,6 +1,6 @@
 
 #include "../common.h"
-#include "../queue.h"
+#include "../stack.h"
 
 typedef struct c_graph_matrix
 {
@@ -29,9 +29,3 @@ void c_graph_matrix_floyd( c_graph_matrix *graph, c_array *tree, c_array *weight
 
 
 void c_graph_matrix_astar( c_graph_matrix *graph, int *path, int begin, int end );
-
-
-void c_graph_matrix_set( c_astar *table, int pos, int weight, int link );
-
-
-int c_graph_matrix_find( c_graph_matrix *graph, c_astar *table );

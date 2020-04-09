@@ -33,7 +33,7 @@ typedef struct c_vertex
 typedef struct c_astar
 {
 	int	weight;
-	int	link;
+	int	adjvex;
 } c_astar;
 
 void c_array_swap( int *arr, int src, int dst );

@@ -1,5 +1,6 @@
 
 #include "../graph/matrix.h"
+#include "../queue.h"
 
 void c_graph_vertex_init( c_graph_matrix *graph, char *filename );
 
@@ -123,9 +124,7 @@ void c_graph_matrix_prim_example( c_graph_matrix *graph )
 	for ( int idx = 0; idx < graph->vertex_num; idx++ )
 	{
 		if ( !strcmp( graph->vertex[idx].name, name ) )
-		{
 			begin = idx;
-		}
 	}
 	if ( begin == -1 )
 	{
@@ -147,13 +146,9 @@ void c_graph_matrix_dijskra_example( c_graph_matrix *graph )
 	for ( int idx = 0; idx < graph->vertex_num; idx++ )
 	{
 		if ( !strcmp( graph->vertex[idx].name, name1 ) )
-		{
 			begin = idx;
-		}
 		if ( !strcmp( graph->vertex[idx].name, name2 ) )
-		{
 			end = idx;
-		}
 	}
 	if ( begin == -1 || end == -1 )
 	{
@@ -177,15 +172,11 @@ void c_graph_matrix_dijskra_example( c_graph_matrix *graph )
 	}
 	int sum = c_queue_length( queue );
 	while ( c_queue_length( queue ) )
-	{
 		printf( "->%s", c_queue_lpop( queue ) );
-	}
 	if ( weight[end] < 1000 )
-	{
 		printf( "\n\nSum %dstop,distance about %dm.\n\n", sum, weight[end] );
-	}else{
+	else
 		printf( "\n\nSum %dstop,distance about %dkm.\n\n", sum, weight[end] / 1000 );
-	}
 	c_queue_close( queue );
 }
 
@@ -196,18 +187,14 @@ void c_graph_matrix_floyd_example( c_graph_matrix *graph )
 	char name1[MAXSIZE], name2[MAXSIZE];
 	scanf( "%s%s", name1, name2 );
 	printf( "\nResult: " );
-	c_array	tree, weight;
-	int		begin = -1, end = -1;
+	c_array tree, weight;
+	int	begin = -1, end = -1;
 	for ( int idx = 0; idx < graph->vertex_num; idx++ )
 	{
 		if ( !strcmp( graph->vertex[idx].name, name1 ) )
-		{
 			begin = idx;
-		}
 		if ( !strcmp( graph->vertex[idx].name, name2 ) )
-		{
 			end = idx;
-		}
 	}
 	if ( begin == -1 || end == -1 )
 	{
@@ -230,11 +217,9 @@ void c_graph_matrix_floyd_example( c_graph_matrix *graph )
 		pos = tree[pos][end];
 	}
 	if ( weight[begin][end] < 1000 )
-	{
 		printf( "\n\nSum %dstop,distance about %dm.\n\n", sum, weight[begin][end] );
-	}else{
+	else
 		printf( "\n\nSum %dstop,distance about %dkm.\n\n", sum, weight[begin][end] / 1000 );
-	}
 }
 
 
@@ -248,13 +233,9 @@ void c_graph_matrix_astar_example( c_graph_matrix *graph )
 	for ( int idx = 0; idx < graph->vertex_num; idx++ )
 	{
 		if ( !strcmp( graph->vertex[idx].name, name1 ) )
-		{
 			begin = idx;
-		}
 		if ( !strcmp( graph->vertex[idx].name, name2 ) )
-		{
 			end = idx;
-		}
 	}
 	if ( begin == -1 || end == -1 )
 	{
@@ -279,14 +260,10 @@ void c_graph_matrix_astar_example( c_graph_matrix *graph )
 	}
 	int sum = c_queue_length( queue );
 	while ( c_queue_length( queue ) )
-	{
 		printf( "->%s", c_queue_lpop( queue ) );
-	}
 	if ( weight < 1000 )
-	{
 		printf( "\n\nSum %dstop,distance about %dm.\n\n", sum, weight );
-	}else{
+	else
 		printf( "\n\nSum %dstop,distance about %dkm.\n\n", sum, weight / 1000 );
-	}
 	c_queue_close( queue );
 }
