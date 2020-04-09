@@ -10,7 +10,8 @@ typedef struct c_stack_node
 typedef struct c_stack
 {
 	c_stack_node	queue[MAXSIZE];
-	int		length;
+	int		begin;
+	int		end;
 } c_stack;
 
 c_stack *c_stack_create( void );
@@ -28,4 +29,7 @@ c_data c_stack_pop( c_stack *stack, int fmt );
 bool c_stack_close( c_stack *stack );
 
 
-void c_stack_fixup( c_stack *stack, int pos, int fmt );
+void c_stack_min_heap( c_stack *stack, int pos );
+
+
+void c_stack_max_heap( c_stack *stack, int pos );

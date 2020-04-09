@@ -8,14 +8,14 @@ int main( void )
 
 	printf( "\nfrom small to big: " );
 	for ( int idx = 0; idx < 10; idx++ )
-		c_stack_push( stack, arr[idx], &arr[idx] );
+		c_stack_push( stack, 0, &arr[idx] );
 
 	while ( c_stack_length( stack ) > 2 )
 		printf( "%d ", *( (int *) c_stack_pop( stack, 0 ) ) );
 
 	printf( "\nfrom big to small: " );
 	for ( int idx = 0; idx < 10; idx++ )
-		c_stack_push( stack, arr[idx], &arr[idx] );
+		c_stack_push( stack, 0, &arr[idx] );
 
 	while ( c_stack_length( stack ) )
 		printf( "%d ", *( (int *) c_stack_pop( stack, 1 ) ) );

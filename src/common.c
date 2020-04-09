@@ -11,29 +11,41 @@ void c_array_swap( int *arr, int src, int dst )
 
 int c_array_limit( int *arr, int len, int fmt )
 {
-	for ( int idx = len / 2 - 1; idx >= 0; idx-- )
-		c_array_fixup( arr, len, idx, fmt );
+	if (fmt) {
+		for ( int idx = len / 2 - 1; idx >= 0; idx-- )
+			c_array_max_heap( arr, len, idx );
+	}else{
+		for ( int idx = len / 2 - 1; idx >= 0; idx-- )
+			c_array_min_heap( arr, len, idx );
+	}
 	return(arr[0]);
 }
 
 
-void c_array_fixup( int *arr, int len, int pos, int fmt )
+void c_array_min_heap( int *arr, int len, int pos )
 {
 	int tmp = arr[pos];
 	for ( int idx = pos * 2 + 1; idx < len; idx = pos * 2 + 1 )
 	{
-		if ( fmt )
-		{
-			if ( (idx + 1) < len && arr[idx] < arr[idx + 1] )
-				idx++;
-			if ( arr[idx] <= tmp )
-				break;
-		}else{
-			if ( (idx + 1) < len && arr[idx] > arr[idx + 1] )
-				idx++;
-			if ( arr[idx] >= tmp )
-				break;
-		}
+		if ( (idx + 1) < len && arr[idx] > arr[idx + 1] )
+			idx++;
+		if ( arr[idx] >= tmp )
+			break;
+		arr[pos]	= arr[idx];
+		pos		= idx;
+	}
+	arr[pos] = tmp;
+}
+
+void c_array_max_heap( int *arr, int len, int pos )
+{
+	int tmp = arr[pos];
+	for ( int idx = pos * 2 + 1; idx < len; idx = pos * 2 + 1 )
+	{
+		if ( (idx + 1) < len && arr[idx] < arr[idx + 1] )
+			idx++;
+		if ( arr[idx] <= tmp )
+			break;
 		arr[pos]	= arr[idx];
 		pos		= idx;
 	}

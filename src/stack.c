@@ -6,34 +6,42 @@ c_stack *c_stack_create( void )
 	c_stack *stack = malloc( sizeof(c_stack) );
 	if ( !stack )
 		return(NULL);
-	stack->length = 0;
+	stack->begin = stack->end = 0;
 	return(stack);
 }
 
 
 int c_stack_length( c_stack *stack )
 {
-	return(stack->length);
+	return(stack->end - stack->begin);
 }
 
 
 bool c_stack_push( c_stack *stack, double weight, c_data data )
 {
-	stack->queue[stack->length].weight	= weight;
-	stack->queue[stack->length++].data	= data;
+	stack->queue[stack->end].weight = weight;
+	stack->queue[stack->end++].data = data;
 	return(true);
 }
 
 
 c_data c_stack_pop( c_stack *stack, int fmt )
 {
-	if ( !stack->length )
+	if ( stack->begin == stack->end )
+	{
+		stack->begin = stack->end = 0;
 		return(NULL);
-	for ( int idx = stack->length / 2 - 1; idx >= 0; idx-- )
-		c_stack_fixup( stack, idx, fmt );
-	c_data data = stack->queue[0].data;
-	stack->queue[0] = stack->queue[--stack->length];
-	return(data);
+	}
+	int length = c_stack_length( stack );
+	if ( fmt )
+	{
+		for ( int idx = length / 2 - 1; idx >= 0; idx-- )
+			c_stack_max_heap( stack, idx );
+	}else{
+		for ( int idx = length / 2 - 1; idx >= 0; idx-- )
+			c_stack_min_heap( stack, idx );
+	}
+	return(stack->queue[stack->begin++].data);
 }
 
 
@@ -45,25 +53,35 @@ bool c_stack_close( c_stack *stack )
 }
 
 
-void c_stack_fixup( c_stack *stack, int pos, int fmt )
+void c_stack_min_heap( c_stack *stack, int pos )
 {
-	c_stack_node tmp = stack->queue[pos];
-	for ( int idx = pos * 2 + 1; idx < stack->length; idx = pos * 2 + 1 )
+	int		length	= c_stack_length( stack );
+	c_stack_node	tmp	= stack->queue[stack->begin + pos];
+	for ( int idx = pos * 2 + 1; idx < length; idx = pos * 2 + 1 )
 	{
-		if ( fmt )
-		{
-			if ( (idx + 1) < stack->length && stack->queue[idx].weight < stack->queue[idx + 1].weight )
-				idx++;
-			if ( stack->queue[idx].weight <= tmp.weight )
-				break;
-		}else{
-			if ( (idx + 1) < stack->length && stack->queue[idx].weight > stack->queue[idx + 1].weight )
-				idx++;
-			if ( stack->queue[idx].weight >= tmp.weight )
-				break;
-		}
-		stack->queue[pos]	= stack->queue[idx];
-		pos			= idx;
+		if ( (idx + 1) < length && stack->queue[stack->begin + idx].weight > stack->queue[stack->begin + idx + 1].weight )
+			idx++;
+		if ( stack->queue[stack->begin + idx].weight >= tmp.weight )
+			break;
+		stack->queue[stack->begin + pos]	= stack->queue[stack->begin + idx];
+		pos					= idx;
 	}
-	stack->queue[pos] = tmp;
+	stack->queue[stack->begin + pos] = tmp;
+}
+
+
+void c_stack_max_heap( c_stack *stack, int pos )
+{
+	int		length	= c_stack_length( stack );
+	c_stack_node	tmp	= stack->queue[stack->begin + pos];
+	for ( int idx = pos * 2 + 1; idx < length; idx = pos * 2 + 1 )
+	{
+		if ( (idx + 1) < length && stack->queue[stack->begin + idx].weight < stack->queue[stack->begin + idx + 1].weight )
+			idx++;
+		if ( stack->queue[stack->begin + idx].weight <= tmp.weight )
+			break;
+		stack->queue[stack->begin + pos]	= stack->queue[stack->begin + idx];
+		pos					= idx;
+	}
+	stack->queue[stack->begin + pos] = tmp;
 }

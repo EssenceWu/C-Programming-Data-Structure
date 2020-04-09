@@ -36,16 +36,16 @@ void c_btree_level( c_node *pos )
 {
 	if ( !pos )
 		return;
-	c_queue *queue = c_queue_create();
-	c_queue_lpush( queue, pos );
-	while ( c_queue_length( queue ) )
+	c_stack *stack = c_stack_create();
+	c_stack_push( stack, 0, pos );
+	while ( c_stack_length( stack ) )
 	{
-		pos = c_queue_rpop( queue );
+		pos = c_stack_pop( stack, 0 );
 		printf( "->%d(%d)", pos->key, pos->bf );
 		if ( pos->left )
-			c_queue_lpush( queue, pos->left );
+			c_stack_push( stack, 0, pos->left );
 		if ( pos->right )
-			c_queue_lpush( queue, pos->right );
+			c_stack_push( stack, 0, pos->right );
 	}
 }
 

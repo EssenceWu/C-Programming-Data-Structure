@@ -42,7 +42,10 @@ void c_array_swap( int *arr, int src, int dst );
 int c_array_limit( int *arr, int len, int fmt );
 
 
-void c_array_fixup( int *arr, int len, int pos, int fmt );
+void c_array_min_heap( int *arr, int len, int pos );
+
+
+void c_array_max_heap( int *arr, int len, int pos );
 
 
 int c_graph_distance( c_vertex *vertex, int begin, int pos, int end );

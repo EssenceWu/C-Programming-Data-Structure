@@ -140,7 +140,6 @@ void c_rb_insert_fixup( c_node **root, c_node *pos, c_node *parent )
 			}
 		}
 	}
-	(*root)->bf = 0;
 }
 
 

@@ -1,6 +1,6 @@
 
 #include "../common.h"
-#include "../queue.h"
+#include "../stack.h"
 
 
 void c_btree_pre( c_node *node );
