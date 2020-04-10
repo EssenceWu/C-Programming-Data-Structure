@@ -1,7 +1,7 @@
 
 #include "../common.h"
 
-typedef struct c_edge 
+typedef struct c_edge
 {
 	int		begin;
 	int		end;
@@ -10,13 +10,13 @@ typedef struct c_edge
 	struct c_edge	*right;
 } c_edge;
 
-typedef struct c_vertex 
+typedef struct c_vertex
 {
-	c_station	station;
+	c_stop		stop;
 	struct c_edge	*next;
 } c_vertex;
 
-typedef struct c_graph_multi 
+typedef struct c_graph_multi
 {
 	c_vertex	vertex[MAXSIZE];
 	int		vertex_num;

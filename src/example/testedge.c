@@ -72,7 +72,7 @@ void c_graph_edge_init( c_graph_edge *graph, char *filename )
 
 void c_graph_edge_kruskal_example( c_graph_edge *graph )
 {
-	printf( "\nKruskal: \n\n" );
+	printf( "\nKruskal: \n" );
 	c_graph_edge_kruskal( graph );
 	printf( "\n" );
 }
