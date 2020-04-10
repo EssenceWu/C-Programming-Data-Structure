@@ -49,8 +49,6 @@ void c_graph_edge_sort( c_graph_edge *graph, int left, int right )
 int c_graph_edge_find( int *tree, int pos )
 {
 	while ( tree[pos] != -1 )
-	{
 		pos = tree[pos];
-	}
 	return(pos);
 }

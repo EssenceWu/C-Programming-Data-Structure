@@ -36,7 +36,7 @@ void c_graph_vertex_init( c_graph_list *graph, char *filename )
 	int idx = 0;
 	while ( !feof( fp ) )
 	{
-		fscanf( fp, "%s%lf%lf", graph->vertex[idx].station.name, &graph->vertex[idx].station.lat, &graph->vertex[idx].station.lng );
+		fscanf( fp, "%s%lf%lf", graph->vertex[idx].stop.name, &graph->vertex[idx].stop.lat, &graph->vertex[idx].stop.lng );
 		graph->vertex[idx].in_degree = 0;
 		graph->vertex[idx].next = NULL;
 		idx++;

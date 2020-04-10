@@ -1,5 +1,6 @@
 
 #include "../common.h"
+#include "../stack.h"
 
 typedef struct c_edge
 {
@@ -10,7 +11,7 @@ typedef struct c_edge
 
 typedef struct c_vertex
 {
-	c_station	station;
+	c_stop		stop;
 	int		in_degree;
 	struct c_edge	*next;
 } c_vertex;

@@ -100,7 +100,7 @@ void c_graph_edge_init( c_graph_matrix *graph, char *filename )
 
 void c_graph_matrix_dfs_example( c_graph_matrix *graph )
 {
-	printf( "\nDfs result: \n\n" );
+	printf( "\nDfs result: \n" );
 	c_graph_matrix_dfs( graph );
 	printf( "\n" );
 }
@@ -108,7 +108,7 @@ void c_graph_matrix_dfs_example( c_graph_matrix *graph )
 
 void c_graph_matrix_bfs_example( c_graph_matrix *graph )
 {
-	printf( "\nBfs result: \n\n" );
+	printf( "\nBfs result: \n" );
 	c_graph_matrix_bfs( graph );
 	printf( "\n" );
 }
@@ -128,11 +128,11 @@ void c_graph_matrix_prim_example( c_graph_matrix *graph )
 	}
 	if ( begin == -1 )
 	{
-		printf( "No found\n\n" );
+		printf( "No found\n" );
 		exit( 0 );
 	}
 	c_graph_matrix_prim( graph, begin );
-	printf( "\n\n" );
+	printf( "\n" );
 }
 
 
@@ -152,13 +152,13 @@ void c_graph_matrix_dijskra_example( c_graph_matrix *graph )
 	}
 	if ( begin == -1 || end == -1 )
 	{
-		printf( "No found.\n\n" );
+		printf( "No found.\n" );
 		exit( 0 );
 	}
 	c_graph_matrix_dijskra( graph, tree, weight, begin );
 	if ( !weight[end] )
 	{
-		printf( "No line.\n\n" );
+		printf( "No line.\n" );
 		exit( 0 );
 	}
 	int	pos	= end;
@@ -174,9 +174,9 @@ void c_graph_matrix_dijskra_example( c_graph_matrix *graph )
 	while ( c_queue_length( queue ) )
 		printf( "->%s", c_queue_lpop( queue ) );
 	if ( weight[end] < 1000 )
-		printf( "\n\nSum %dstop,distance about %dm.\n\n", sum, weight[end] );
+		printf( "\nSum %dstop,distance about %dm.\n", sum, weight[end] );
 	else
-		printf( "\n\nSum %dstop,distance about %dkm.\n\n", sum, weight[end] / 1000 );
+		printf( "\nSum %dstop,distance about %dkm.\n", sum, weight[end] / 1000 );
 	c_queue_close( queue );
 }
 
@@ -198,13 +198,13 @@ void c_graph_matrix_floyd_example( c_graph_matrix *graph )
 	}
 	if ( begin == -1 || end == -1 )
 	{
-		printf( "No found.\n\n" );
+		printf( "No found.\n" );
 		exit( 0 );
 	}
 	c_graph_matrix_floyd( graph, &tree, &weight );
 	if ( !weight[begin][end] )
 	{
-		printf( "No line.\n\n" );
+		printf( "No line.\n" );
 		exit( 0 );
 	}
 	int pos = begin, sum = 0;
@@ -217,9 +217,9 @@ void c_graph_matrix_floyd_example( c_graph_matrix *graph )
 		pos = tree[pos][end];
 	}
 	if ( weight[begin][end] < 1000 )
-		printf( "\n\nSum %dstop,distance about %dm.\n\n", sum, weight[begin][end] );
+		printf( "\nSum %dstop,distance about %dm.\n", sum, weight[begin][end] );
 	else
-		printf( "\n\nSum %dstop,distance about %dkm.\n\n", sum, weight[begin][end] / 1000 );
+		printf( "\nSum %dstop,distance about %dkm.\n", sum, weight[begin][end] / 1000 );
 }
 
 
@@ -239,7 +239,7 @@ void c_graph_matrix_astar_example( c_graph_matrix *graph )
 	}
 	if ( begin == -1 || end == -1 )
 	{
-		printf( "No found.\n\n" );
+		printf( "No found.\n" );
 		exit( 0 );
 	}
 	c_graph_matrix_astar( graph, path, begin, end );
@@ -249,7 +249,7 @@ void c_graph_matrix_astar_example( c_graph_matrix *graph )
 	{
 		if ( pos == -1 )
 		{
-			printf( "No line.\n\n" );
+			printf( "No line.\n" );
 			exit( 0 );
 		}
 		weight += graph->edge[pos][link];
@@ -262,8 +262,8 @@ void c_graph_matrix_astar_example( c_graph_matrix *graph )
 	while ( c_queue_length( queue ) )
 		printf( "->%s", c_queue_lpop( queue ) );
 	if ( weight < 1000 )
-		printf( "\n\nSum %dstop,distance about %dm.\n\n", sum, weight );
+		printf( "\nSum %dstop,distance about %dm.\n", sum, weight );
 	else
-		printf( "\n\nSum %dstop,distance about %dkm.\n\n", sum, weight / 1000 );
+		printf( "\nSum %dstop,distance about %dkm.\n", sum, weight / 1000 );
 	c_queue_close( queue );
 }

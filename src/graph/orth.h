@@ -12,7 +12,7 @@ typedef struct c_edge
 
 typedef struct c_vertex
 {
-	c_station	station;
+	c_stop		stop;
 	struct c_edge	*left;
 	struct c_edge	*right;
 } c_vertex;

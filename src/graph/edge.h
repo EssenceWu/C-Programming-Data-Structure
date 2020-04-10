@@ -10,7 +10,7 @@ typedef struct c_edge
 
 typedef struct c_graph_edge 
 {
-	c_station	vertex[MAXSIZE];
+	c_stop	vertex[MAXSIZE];
 	c_edge		edge[MAXSIZE];
 	int		vertex_num;
 	int		edge_num;

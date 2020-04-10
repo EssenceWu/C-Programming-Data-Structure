@@ -53,9 +53,9 @@ void c_array_max_heap( int *arr, int len, int pos )
 }
 
 
-int c_graph_distance( c_vertex *vertex, int begin, int pos, int end )
+int c_graph_distance( c_stop *stop, int begin, int pos, int end )
 {
-	c_vertex a = vertex[begin], b = vertex[pos], c = vertex[end];
+	c_stop a = stop[begin], b = stop[pos], c = stop[end];
 	return(c_degree_distance( a.lat, a.lng, b.lat, b.lng ) + c_degree_distance( b.lat, b.lng, c.lat, c.lng ) );
 }
 

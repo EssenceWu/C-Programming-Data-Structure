@@ -4,10 +4,10 @@
 
 typedef struct c_graph_matrix
 {
-	c_vertex	vertex[MAXSIZE];
-	c_array	    edge;
-	int		vertex_num;
-	int		edge_num;
+	c_stop	vertex[MAXSIZE];
+	c_array edge;
+	int	vertex_num;
+	int	edge_num;
 } c_graph_matrix;
 
 void c_graph_matrix_dfs( c_graph_matrix *graph );
@@ -29,3 +29,6 @@ void c_graph_matrix_floyd( c_graph_matrix *graph, c_array *tree, c_array *weight
 
 
 void c_graph_matrix_astar( c_graph_matrix *graph, int *path, int begin, int end );
+
+
+void c_graph_matrix_set( c_astar *table, int pos, double weight, int adjvex );

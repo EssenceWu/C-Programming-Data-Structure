@@ -23,12 +23,12 @@ typedef struct c_node
 
 typedef int c_array[MAXSIZE][MAXSIZE];
 
-typedef struct c_vertex
+typedef struct c_stop
 {
 	char	name[MAXSIZE];
 	double	lat;
 	double	lng;
-} c_vertex;
+} c_stop;
 
 typedef struct c_astar
 {
@@ -48,7 +48,7 @@ void c_array_min_heap( int *arr, int len, int pos );
 void c_array_max_heap( int *arr, int len, int pos );
 
 
-int c_graph_distance( c_vertex *vertex, int begin, int pos, int end );
+int c_graph_distance( c_stop *stop, int begin, int pos, int end );
 
 
 int c_degree_distance( double lat1, double lng1, double lat2, double lng2 );
