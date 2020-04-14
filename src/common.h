@@ -15,7 +15,7 @@ typedef struct c_node
 {
 	int		key;
 	c_data		data;
-	int		bf;
+	double		bf;
 	struct c_node	*left;
 	struct c_node	*right;
 	struct c_node	*parent;
@@ -32,7 +32,7 @@ typedef struct c_stop
 
 typedef struct c_astar
 {
-	int	weight;
+	double	weight;
 	int	adjvex;
 } c_astar;
 

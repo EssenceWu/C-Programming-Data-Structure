@@ -17,9 +17,9 @@ int c_stack_length( c_stack *stack )
 }
 
 
-bool c_stack_push( c_stack *stack, double weight, c_data data )
+bool c_stack_push( c_stack *stack, double bf, c_data data )
 {
-	stack->queue[stack->end].weight = weight;
+	stack->queue[stack->end].bf	= bf;
 	stack->queue[stack->end++].data = data;
 	return(true);
 }
@@ -55,13 +55,13 @@ bool c_stack_close( c_stack *stack )
 
 void c_stack_min_heap( c_stack *stack, int pos )
 {
-	int		length	= c_stack_length( stack );
-	c_stack_node	tmp	= stack->queue[stack->begin + pos];
+	int	length	= c_stack_length( stack );
+	c_node	tmp	= stack->queue[stack->begin + pos];
 	for ( int idx = pos * 2 + 1; idx < length; idx = pos * 2 + 1 )
 	{
-		if ( (idx + 1) < length && stack->queue[stack->begin + idx].weight > stack->queue[stack->begin + idx + 1].weight )
+		if ( (idx + 1) < length && stack->queue[stack->begin + idx].bf > stack->queue[stack->begin + idx + 1].bf )
 			idx++;
-		if ( stack->queue[stack->begin + idx].weight >= tmp.weight )
+		if ( stack->queue[stack->begin + idx].bf >= tmp.bf )
 			break;
 		stack->queue[stack->begin + pos]	= stack->queue[stack->begin + idx];
 		pos					= idx;
@@ -72,13 +72,13 @@ void c_stack_min_heap( c_stack *stack, int pos )
 
 void c_stack_max_heap( c_stack *stack, int pos )
 {
-	int		length	= c_stack_length( stack );
-	c_stack_node	tmp	= stack->queue[stack->begin + pos];
+	int	length	= c_stack_length( stack );
+	c_node	tmp	= stack->queue[stack->begin + pos];
 	for ( int idx = pos * 2 + 1; idx < length; idx = pos * 2 + 1 )
 	{
-		if ( (idx + 1) < length && stack->queue[stack->begin + idx].weight < stack->queue[stack->begin + idx + 1].weight )
+		if ( (idx + 1) < length && stack->queue[stack->begin + idx].bf < stack->queue[stack->begin + idx + 1].bf )
 			idx++;
-		if ( stack->queue[stack->begin + idx].weight <= tmp.weight )
+		if ( stack->queue[stack->begin + idx].bf <= tmp.bf )
 			break;
 		stack->queue[stack->begin + pos]	= stack->queue[stack->begin + idx];
 		pos					= idx;
