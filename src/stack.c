@@ -27,12 +27,12 @@ bool c_stack_push( c_stack *stack, double bf, c_data data )
 
 c_data c_stack_pop( c_stack *stack, int fmt )
 {
-	if ( stack->begin == stack->end )
+	int length = c_stack_length( stack );
+	if ( !length )
 	{
 		stack->begin = stack->end = 0;
 		return(NULL);
 	}
-	int length = c_stack_length( stack );
 	if ( fmt )
 	{
 		for ( int idx = length / 2 - 1; idx >= 0; idx-- )
