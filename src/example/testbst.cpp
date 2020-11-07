@@ -37,7 +37,7 @@ int main( void )
 	node	*tree	= NULL;
 	for ( int idx = 0; idx < 9; idx++ ) {
 	    insert( &tree, arr[idx] );
-    }
+	}
 	pre_order( tree );
 	printf( "\n" );
 	in_order( tree );
